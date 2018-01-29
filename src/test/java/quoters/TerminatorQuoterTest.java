@@ -21,8 +21,16 @@ public class TerminatorQuoterTest {
 
     @Test
     public void sayQuoteTest() {
-        context.getBean(TerminatorQuoter.class).sayQuote();
-        assertEquals("I'll be back", outContent.toString());
+        TerminatorQuoter bean = context.getBean(TerminatorQuoter.class);
+        bean.sayQuote();
+
+        int repeat = bean.getRepeat();
+        StringBuilder testSb = new StringBuilder();
+        for (int i = 0; i < repeat; i++) {
+            testSb.append("I'll be back\n");
+        }
+
+        assertEquals(testSb.toString(), outContent.toString());
     }
 
     @After
